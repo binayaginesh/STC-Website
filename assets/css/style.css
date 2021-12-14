@@ -2054,6 +2054,9 @@ section {
     }
 }
 
+
+/* Footer New */
+
 footer {
     background-color: #B4E2EA;
     background-image: url(../img/bggg.png);
@@ -2100,12 +2103,13 @@ footer .brief-info h4 {
 }
 
 footer .link-section {
-    padding: 25px;
+    padding: 25px 25px 10px 25px;
     text-align: center;
 }
 
 footer .link-section .links {
     padding-left: 10px;
+    margin-bottom: 15px;
 }
 
 footer .link-section .links h5 {

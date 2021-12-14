@@ -1,5 +1,0 @@
-This project includes designing tractors that independently 
-observe their position, decide speed, and avoid obstacles 
-such as people, animals, or objects in the field while performing 
-their task and deliver a high tractive effort (or torque) at slow 
-speeds for the purposes of tillage and other agricultural tasks.
