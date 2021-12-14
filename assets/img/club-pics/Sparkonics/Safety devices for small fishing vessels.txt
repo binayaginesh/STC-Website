@@ -1,0 +1,5 @@
+The objective of the project is to develop an effective fool proof 
+mechanism that can forewarn host fishing vessels the presence 
+of Ships and icebergs to make them safer during navigation at 
+night by developing a device using a combination of sensors like 
+Low Intensity Radar, AIS, GPS, etc.

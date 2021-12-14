@@ -1,0 +1,3 @@
+This project titled "Exo-planet detection" is an attempt to create a model which predicts which bodies outside
+ Solar System are planets and which aren't. Transit Photometry and techniques of Artificial Intelligence / Deep-learning
+ are being implemented to make a working model with high accuracy

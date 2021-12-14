@@ -1,0 +1,3 @@
+For any given DICOM (MRI/CT scan) series data of the patient with 
+fiducials affixed, it is required to obtain autonomously the number of fiducials and
+coordinates of the centre points of the fiducials with respect any coordinate reference.

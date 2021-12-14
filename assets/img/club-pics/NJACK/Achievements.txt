@@ -1,0 +1,16 @@
+Team "Squirtle Squad" qualified for ACM ICPC World Finals 2019-2020
+
+ICPC Amritapuri online round
+    Rank 1 bagged by Team Squirtle Squad
+    Rank 6 bagged by Team Return zero
+    Rank 12 bagged by Team Invariant
+3 Teams in top 15 which is the most number of teams in top 15 for a single institution
+
+Google Summer Of Code:
+Ayush Shrivastava (freifunk)
+Darshil Patel (Rocket.Chat)
+Krishna Kichu (The Honeynet Project)
+Anushka Chakraborty (FHIR SDK)
+
+Outreachy: 
+Shreya Gupta (Ocaml)
