@@ -1192,6 +1192,12 @@ section {
 # Portfolio
 --------------------------------------------------------------*/
 
+.portfolio .position-title h3 {
+    margin: 15px 0 15px 0;
+    font-size: 32px;
+    font-weight: 700;
+}
+
 .portfolio #portfolio-flters {
     padding: 0;
     margin: 0 auto 15px auto;
@@ -1222,6 +1228,11 @@ section {
 .portfolio #portfolio-flters li:last-child {
     margin-right: 0;
 }
+
+
+/* .portfolio .portfolio-container {
+    border: 1px solid #106eea;
+} */
 
 .portfolio .portfolio-item {
     margin-bottom: 30px;
@@ -1381,7 +1392,7 @@ section {
 
 .portfolio .portfolio-item .member {
     margin-bottom: 20px;
-    height: fit-content;
+    /* height: fit-content; */
     width: fit-content;
     overflow: hidden;
     border-radius: 4px;
@@ -1389,33 +1400,9 @@ section {
     box-shadow: 0px 2px 15px rgba(16, 110, 234, 0.15);
 }
 
-
-/* @media (max-width: 600px) {
-    .portfolio .portfolio-item .member {
-        margin-bottom: 20px;
-        overflow: hidden;
-        border-radius: 4px;
-        background: #fff;
-        box-shadow: 0px 2px 15px rgba(16, 110, 234, 0.15);
-    }
-    .portfolio .portfolio-item .member .member-img {
-        height: auto;
-        width: auto;
-        position: relative;
-        overflow: hidden;
-    }
-    .portfolio .portfolio-item .member .member-info h4 {
-        font-weight: 700;
-        font-size: 18px;
-    }
-    .portfolio .portfolio-item .member .member-info span {
-        font-size: 10px;
-        font-weight: 400;
-    }
-} */
-
 .portfolio .portfolio-item .member .member-img {
-    /* height: 150px; */
+    height: 250px;
+    width: auto;
     position: relative;
     overflow: hidden;
 }
@@ -1480,6 +1467,23 @@ section {
 .portfolio .portfolio-item .member:hover .social {
     opacity: 1;
     bottom: 15px;
+}
+
+@media (max-width: 600px) {
+    .portfolio .portfolio-item .member .member-img {
+        height: 400px;
+        width: auto;
+        position: relative;
+        overflow: hidden;
+    }
+    .portfolio .portfolio-item .member .member-info h4 {
+        font-weight: 700;
+        font-size: 18px;
+    }
+    .portfolio .portfolio-item .member .member-info span {
+        font-size: 10px;
+        font-weight: 400;
+    }
 }
 
 
