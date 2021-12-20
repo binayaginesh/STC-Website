@@ -184,6 +184,12 @@
             itemSelector: '.portfolio-item'
         });
 
+        console.log("hello");
+
+        portfolioIsotope.isotope({
+            filter: $("#portfolio-flters li.filter-active").data('filter')
+        });
+
         $('#portfolio-flters li').on('click', function() {
             $("#portfolio-flters li").removeClass('filter-active');
             $(this).addClass('filter-active');
