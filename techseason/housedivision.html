@@ -78,7 +78,16 @@
             <div class="container">
 
                 <!-- <h3 data-aos="fade-up" data-aos-delay="100">Tech Season Leaderboard</h3> -->
-                <input type="text" placeholder="Type your name or roll number" id="searchbox" style="margin: 20px 0; width: 100%;">
+                <p>Either enter your roll no to search or select the group to see all its entries</p>
+                <div class="d-flex">
+                <input type="text" placeholder="Type your name or roll number" id="searchbox" style="margin: 20px 0; width: 100%; margin-top: 0px;">
+                <img src="./images/SearchIcon.png" id="search_roll" class="searchicon" alt="" style="height: 50px; width: auto; margin-top: -6px">
+            </div>
+            <div class="mb-4">
+                <!-- <h6 class=" text-uppercase">Text content</h6> -->
+                <!-- Gradient divider -->
+                <hr data-content="OR" class="hr-text">
+            </div>
                 <div id="leader-div" data-aos="fade-up" data-aos-delay="300">
                     <p>Leaderboard loading...</p>
                 </div>
@@ -157,7 +166,7 @@
 
     <script type="text/javascript">
         $.ajax({
-            url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQaMsjQkiCqVDJ0MWlhzxV5rXhUZCQDu91KOTs03K48wuvihxQEY-oRVKJ7Ig-eZssrF4hr3aJbiwC5/pub?gid=653317739&single=true&output=csv',
+            url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_iShO_Q7piQiBQZqry3YFrxuomEXYqd4BQc8f9Z4H2fDhAms6up3NUDuaiTYmfN_p-Ihr-tG0HsGf/pub?gid=0&single=true&output=csv',
             success: loadDataToState,
             error: function() {
                 $('#leader-div').html('<p>Leaderboard could not be fetched.</p>');
@@ -182,7 +191,7 @@
                 return;
             }
 
-            for (var i = 1; i < rows.length; i++) {
+            for (var i = 0; i < rows.length; i++) {
                 var cells = rows[i].split(',');
                 if (cells.length == 0) {
                     $('#leader-div').html('<p>Data could not be parsed.</p>');
@@ -210,13 +219,23 @@
                 dracoClone = draco;
             }
 
-            renderTableToDom(auriga, pegasus, cassiopeia, draco);
+            // renderTableToDom(auriga, pegasus, cassiopeia, draco);
+            renderTableToDom([], [], [], []);
         }
 
         function renderTableToDom(auriga, pegasus, cassiopeia, draco) {
             var table = '';
             table +=
-                '<table class=\"table table-borderless table-hover\""><span>Select House</span><select id="houseOptions" onchange="renderHouseChange()" style="margin: 0 0 20px 0; width: 100%;"><option value="all" id="all">All</option><option value="auriga" id="auriga">Auriga</option><option value="pegasus" id="pegasus">Pegasus</option><option value="cassiopeia" id="cassiopeia">Cassiopeia</option><option value="draco" id="draco">Draco</option></select><thead><tr class="bg-primary"><th scope="col">Roll No.</th><th scope="col">Name</th><th scope="col">House</th></tr></thead><tbody>';
+                `<table class=\"table table-borderless table-hover\"">
+                    <span>Select House</span>
+                    <select id="houseOptions" onchange="renderHouseChange()" style="margin: 0 0 20px 0; width: 100%;">
+                        <option ${!(auriga.length!=0 && pegasus.length==0 &&cassiopeia.length==0 && draco.length==0) && !(auriga.length==0 && pegasus.length!=0 &&cassiopeia.length==0 && draco.length==0) && !(auriga.length==0 && pegasus.length==0 &&cassiopeia.length!=0 && draco.length==0) && !(auriga.length==0 && pegasus.length==0 &&cassiopeia.length==0 && draco.length!=0) ? 'selected':''} value="all" id="all">All</option>
+                        <option ${auriga.length!=0 && pegasus.length==0 &&cassiopeia.length==0 && draco.length==0?'selected':''} value="auriga" id="auriga">Auriga</option>
+                        <option ${auriga.length==0 && pegasus.length!=0 &&cassiopeia.length==0 && draco.length==0?'selected':''} value="pegasus" id="pegasus">Pegasus</option>
+                        <option ${auriga.length==0 && pegasus.length==0 &&cassiopeia.length!=0 && draco.length==0?'selected':''} value="cassiopeia" id="cassiopeia">Cassiopeia</option>
+                        <option ${auriga.length==0 && pegasus.length==0 &&cassiopeia.length==0 && draco.length!=0?'selected':''} value="draco" id="draco">Draco</option>
+                        </select>
+                        <thead><tr class="bg-primary"><th scope="col">Roll No.</th><th scope="col">Name</th><th scope="col">House</th></tr></thead><tbody>`;
             for (var i = 0; i < auriga.length; i++) {
                 table += '<tr>';
                 table += '<td>' + auriga[i].roll + '</td>';
@@ -267,7 +286,10 @@
         }
 
         var searchbox = document.querySelector('#searchbox');
-        searchbox.addEventListener('keyup', debounce(renderSearch, 200));
+        // searchbox.addEventListener('keyup', debounce(renderSearch, 200));
+
+        var searchIcon = document.querySelector('#search_roll');
+        searchIcon.addEventListener('click', debounce(renderSearch, 200));
 
         function renderSearch() {
             var inp = searchbox.value;
@@ -332,27 +354,139 @@
             renderTableToDom(aurigaClone, pegasusClone, cassiopeiaClone, dracoClone);
         }
 
-        function renderHouseChange() {
+        function renderHouseChange(e) {
+            var inp = searchbox.value;
+            if (!inp.trim()) {
+                aurigaClone = auriga;
+                pegasusClone = pegasus;
+                cassiopeiaClone = cassiopeia;
+                dracoClone = draco;
+                renderTableToDom(auriga, pegasus, cassiopeia, draco);
+                return 0;
+            }
+            aurigaClone = [];
+                pegasusClone = [];
+                cassiopeiaClone = [];
+                dracoClone = [];
+            inp = inp.toLowerCase();
             var option = document.getElementById("houseOptions");
             var optionValue = option.value;
             console.log(optionValue);
             if (optionValue == 'all') {
-                renderTableToDom(aurigaClone, pegasusClone, cassiopeiaClone, dracoClone);
+                auriga.forEach((obj) => {
+                var {
+                    roll,
+                    name
+                } = obj;
+                roll = roll.toLowerCase();
+                name = name.toLowerCase();
+                if (roll.includes(inp) || name.includes(inp)) {
+                    aurigaClone.push(obj);
+                }
+            })
+            pegasus.forEach((obj) => {
+                var {
+                    roll,
+                    name
+                } = obj;
+                roll = roll.toLowerCase();
+                name = name.toLowerCase();
+                if (roll.includes(inp) || name.includes(inp)) {
+                    pegasusClone.push(obj);
+                }
+            })
+            cassiopeia.forEach((obj) => {
+                var {
+                    roll,
+                    name
+                } = obj;
+                roll = roll.toLowerCase();
+                name = name.toLowerCase();
+                if (roll.includes(inp) || name.includes(inp)) {
+                    cassiopeiaClone.push(obj);
+                }
+            })
+            draco.forEach((obj) => {
+                var {
+                    roll,
+                    name
+                } = obj;
+                roll = roll.toLowerCase();
+                name = name.toLowerCase();
+                if (roll.includes(inp) || name.includes(inp)) {
+                    dracoClone.push(obj);
+                }
+            })
+
+            renderTableToDom(aurigaClone, pegasusClone, cassiopeiaClone, dracoClone);
                 document.getElementById('all').selected = true;
             } else if (optionValue == 'auriga') {
-                renderTableToDom(auriga, [], [], []);
+                
+                auriga.forEach((obj) => {
+                var {
+                    roll,
+                    name
+                } = obj;
+                roll = roll.toLowerCase();
+                name = name.toLowerCase();
+                console.log(roll);
+                if (roll.includes(inp) || name.includes(inp)) {
+                    aurigaClone.push(obj);
+                }
+            })
+            
                 document.getElementById('auriga').selected = true;
-            } else if (optionValue == 'pegasus') {
-                renderTableToDom([], pegasus, [], []);
+            } 
+
+            else if (optionValue == 'pegasus') {
+                pegasus.forEach((obj) => {
+                var {
+                    roll,
+                    name
+                } = obj;
+                roll = roll.toLowerCase();
+                name = name.toLowerCase();
+                console.log(roll);
+                if (roll.includes(inp) || name.includes(inp)) {
+                    pegasusClone.push(obj);
+                }
+            })
                 document.getElementById('pegasus').selected = true;
-            } else if (optionValue == 'cassiopeia') {
-                renderTableToDom([], [], cassiopeia, []);
+            }
+
+            else if (optionValue == 'cassiopeia') {
+                cassiopeia.forEach((obj) => {
+                var {
+                    roll,
+                    name
+                } = obj;
+                roll = roll.toLowerCase();
+                name = name.toLowerCase();
+                console.log(roll);
+                if (roll.includes(inp) || name.includes(inp)) {
+                    cassiopeiaClone.push(obj);
+                }
+            })
                 document.getElementById('cassiopeia').selected = true;
-            } else if (optionValue == 'draco') {
-                renderTableToDom([], [], [], draco);
+            } 
+            
+            else if (optionValue == 'draco') {
+                draco.forEach((obj) => {
+                var {
+                    roll,
+                    name
+                } = obj;
+                roll = roll.toLowerCase();
+                name = name.toLowerCase();
+                console.log(roll);
+                if (roll.includes(inp) || name.includes(inp)) {
+                    dracoClone.push(obj);
+                }
+            })
                 document.getElementById('draco').selected = true;
             }
-            searchbox.value = "";
+
+            renderTableToDom(aurigaClone, pegasusClone, cassiopeiaClone, dracoClone);
         }
     </script>
 
