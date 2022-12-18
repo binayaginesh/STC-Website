@@ -434,7 +434,7 @@
                     aurigaClone.push(obj);
                 }
             })
-            
+            renderTableToDom(aurigaClone, pegasusClone, cassiopeiaClone, dracoClone);
                 document.getElementById('auriga').selected = true;
             } 
 
@@ -451,6 +451,7 @@
                     pegasusClone.push(obj);
                 }
             })
+            renderTableToDom(aurigaClone, pegasusClone, cassiopeiaClone, dracoClone);
                 document.getElementById('pegasus').selected = true;
             }
 
@@ -467,6 +468,7 @@
                     cassiopeiaClone.push(obj);
                 }
             })
+            renderTableToDom(aurigaClone, pegasusClone, cassiopeiaClone, dracoClone);
                 document.getElementById('cassiopeia').selected = true;
             } 
             
@@ -483,10 +485,11 @@
                     dracoClone.push(obj);
                 }
             })
+            renderTableToDom(aurigaClone, pegasusClone, cassiopeiaClone, dracoClone);
                 document.getElementById('draco').selected = true;
             }
 
-            renderTableToDom(aurigaClone, pegasusClone, cassiopeiaClone, dracoClone);
+            // renderTableToDom(aurigaClone, pegasusClone, cassiopeiaClone, dracoClone);
         }
     </script>
 
