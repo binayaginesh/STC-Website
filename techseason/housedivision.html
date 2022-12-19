@@ -166,7 +166,7 @@
 
     <script type="text/javascript">
         $.ajax({
-            url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_iShO_Q7piQiBQZqry3YFrxuomEXYqd4BQc8f9Z4H2fDhAms6up3NUDuaiTYmfN_p-Ihr-tG0HsGf/pub?gid=0&single=true&output=csv',
+            url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS8dHAjWp9kvXtN564RcOvaBZQwBQ76tUaAB_HI216z-gykevMzwppC5w0DdGYZ63QHhUTl1P_ylA6-/pub?gid=0&single=true&output=csv',
             success: loadDataToState,
             error: function() {
                 $('#leader-div').html('<p>Leaderboard could not be fetched.</p>');
@@ -191,28 +191,56 @@
                 return;
             }
 
-            for (var i = 0; i < rows.length; i++) {
+            for (var i = 1; i < rows.length; i++) {
                 var cells = rows[i].split(',');
                 if (cells.length == 0) {
                     $('#leader-div').html('<p>Data could not be parsed.</p>');
                     return;
                 }
+                if(cells[0].length != 0){
+                // console.log(cells[3])
+                if(cells[3] == 'Auriga'){
                 auriga.push({
                     roll: cells[0],
-                    name: cells[1]
-                })
+                    name: cells[1],
+                    program: cells[2],
+                })}
+                else if(cells[3] == 'Pegasus'){
                 pegasus.push({
-                    roll: cells[2],
-                    name: cells[3]
-                })
+                    roll: cells[0],
+                    name: cells[1],
+                    program: cells[2],
+                })}
+                else if(cells[3] == 'Cassiopeia'){
                 cassiopeia.push({
-                    roll: cells[4],
-                    name: cells[5]
-                })
+                    roll: cells[0],
+                    name: cells[1],
+                    program: cells[2],
+                })}
+                else if(cells[3] == 'Draco'){
                 draco.push({
-                    roll: cells[6],
-                    name: cells[7]
-                })
+                    roll: cells[0],
+                    name: cells[1],
+                    program: cells[2],
+                })}
+            }
+                
+                
+
+
+
+                // pegasus.push({
+                //     roll: cells[2],
+                //     name: cells[3]
+                // })
+                // cassiopeia.push({
+                //     roll: cells[4],
+                //     name: cells[5]
+                // })
+                // draco.push({
+                //     roll: cells[6],
+                //     name: cells[7]
+                // })
                 aurigaClone = auriga;
                 pegasusClone = pegasus;
                 cassiopeiaClone = cassiopeia;
@@ -235,11 +263,12 @@
                         <option ${auriga.length==0 && pegasus.length==0 &&cassiopeia.length!=0 && draco.length==0?'selected':''} value="cassiopeia" id="cassiopeia">Cassiopeia</option>
                         <option ${auriga.length==0 && pegasus.length==0 &&cassiopeia.length==0 && draco.length!=0?'selected':''} value="draco" id="draco">Draco</option>
                         </select>
-                        <thead><tr class="bg-primary"><th scope="col">Roll No.</th><th scope="col">Name</th><th scope="col">House</th></tr></thead><tbody>`;
+                        <thead><tr class="bg-primary"><th scope="col">Roll No.</th><th scope="col">Name</th><th scope="col">Program</th><th scope="col">House</th></tr></thead><tbody>`;
             for (var i = 0; i < auriga.length; i++) {
                 table += '<tr>';
                 table += '<td>' + auriga[i].roll + '</td>';
                 table += '<td>' + auriga[i].name + '</td>';
+                table += '<td>' + auriga[i].program + '</td>';
                 table += '<th scope="row">Auriga</th>';
                 table += '</tr>';
             }
@@ -249,6 +278,7 @@
                 table += '<tr>';
                 table += '<td>' + pegasus[i].roll + '</td>';
                 table += '<td>' + pegasus[i].name + '</td>';
+                table += '<td>' + pegasus[i].program + '</td>';
                 table += '<th scope="row">Pegasus</th>';
                 table += '</tr>';
             }
@@ -258,6 +288,7 @@
                 table += '<tr>';
                 table += '<td>' + cassiopeia[i].roll + '</td>';
                 table += '<td>' + cassiopeia[i].name + '</td>';
+                table += '<td>' + cassiopeia[i].program + '</td>';
                 table += '<th scope="row">Cassiopeia</th>';
                 table += '</tr>';
             }
@@ -267,6 +298,7 @@
                 table += '<tr>';
                 table += '<td>' + draco[i].roll + '</td>';
                 table += '<td>' + draco[i].name + '</td>';
+                table += '<td>' + draco[i].program + '</td>';
                 table += '<th scope="row">Draco</th>';
                 table += '</tr>';
             }
@@ -306,11 +338,13 @@
             auriga.forEach((obj) => {
                 var {
                     roll,
-                    name
+                    name,
+                    program
                 } = obj;
                 roll = roll.toLowerCase();
                 name = name.toLowerCase();
-                if (roll.includes(inp) || name.includes(inp)) {
+                program = program.toLowerCase();
+                if (roll.includes(inp) || name.includes(inp) || program.includes(inp)) {
                     aurigaClone.push(obj);
                 }
             })
@@ -318,11 +352,13 @@
             pegasus.forEach((obj) => {
                 var {
                     roll,
-                    name
+                    name,
+                    program
                 } = obj;
                 roll = roll.toLowerCase();
                 name = name.toLowerCase();
-                if (roll.includes(inp) || name.includes(inp)) {
+                program = program.toLowerCase();
+                if (roll.includes(inp) || name.includes(inp) || program.includes(inp)) {
                     pegasusClone.push(obj);
                 }
             })
@@ -330,11 +366,13 @@
             cassiopeia.forEach((obj) => {
                 var {
                     roll,
-                    name
+                    name,
+                    program
                 } = obj;
                 roll = roll.toLowerCase();
                 name = name.toLowerCase();
-                if (roll.includes(inp) || name.includes(inp)) {
+                program = program.toLowerCase();
+                if (roll.includes(inp) || name.includes(inp) || program.includes(inp)) {
                     cassiopeiaClone.push(obj);
                 }
             })
@@ -342,11 +380,13 @@
             draco.forEach((obj) => {
                 var {
                     roll,
-                    name
+                    name,
+                    program
                 } = obj;
                 roll = roll.toLowerCase();
                 name = name.toLowerCase();
-                if (roll.includes(inp) || name.includes(inp)) {
+                program = program.toLowerCase();
+                if (roll.includes(inp) || name.includes(inp) || program.includes(inp)) {
                     dracoClone.push(obj);
                 }
             })
@@ -356,12 +396,29 @@
 
         function renderHouseChange(e) {
             var inp = searchbox.value;
+            var option = document.getElementById("houseOptions");
+            var optionValue = option.value;
             if (!inp.trim()) {
                 aurigaClone = auriga;
                 pegasusClone = pegasus;
                 cassiopeiaClone = cassiopeia;
                 dracoClone = draco;
-                renderTableToDom(auriga, pegasus, cassiopeia, draco);
+                // renderTableToDom(auriga, pegasus, cassiopeia, draco);
+                if(optionValue=='all'){
+                    renderTableToDom(auriga, pegasus, cassiopeia, draco);
+                }
+                else if(optionValue=='auriga'){
+                    renderTableToDom(auriga, [], [], []);
+                }
+                else if(optionValue=='pegasus'){
+                    renderTableToDom([], pegasus, [], []);
+                }
+                else if(optionValue=='cassiopeia'){
+                    renderTableToDom([], [], cassiopeia, []);
+                }
+                else if(optionValue=='draco'){
+                    renderTableToDom([], [], [], draco);
+                }
                 return 0;
             }
             aurigaClone = [];
@@ -369,9 +426,7 @@
                 cassiopeiaClone = [];
                 dracoClone = [];
             inp = inp.toLowerCase();
-            var option = document.getElementById("houseOptions");
-            var optionValue = option.value;
-            console.log(optionValue);
+            // console.log(optionValue);
             if (optionValue == 'all') {
                 auriga.forEach((obj) => {
                 var {
@@ -420,7 +475,7 @@
 
             renderTableToDom(aurigaClone, pegasusClone, cassiopeiaClone, dracoClone);
                 document.getElementById('all').selected = true;
-            } else if (optionValue == 'auriga') {
+            } else if (optionValue == 'auriga' && inp!='') {
                 
                 auriga.forEach((obj) => {
                 var {
@@ -429,7 +484,7 @@
                 } = obj;
                 roll = roll.toLowerCase();
                 name = name.toLowerCase();
-                console.log(roll);
+                // console.log(roll);
                 if (roll.includes(inp) || name.includes(inp)) {
                     aurigaClone.push(obj);
                 }
@@ -437,7 +492,6 @@
             renderTableToDom(aurigaClone, pegasusClone, cassiopeiaClone, dracoClone);
                 document.getElementById('auriga').selected = true;
             } 
-
             else if (optionValue == 'pegasus') {
                 pegasus.forEach((obj) => {
                 var {
@@ -446,7 +500,7 @@
                 } = obj;
                 roll = roll.toLowerCase();
                 name = name.toLowerCase();
-                console.log(roll);
+                // console.log(roll);
                 if (roll.includes(inp) || name.includes(inp)) {
                     pegasusClone.push(obj);
                 }
@@ -463,7 +517,7 @@
                 } = obj;
                 roll = roll.toLowerCase();
                 name = name.toLowerCase();
-                console.log(roll);
+                // console.log(roll);
                 if (roll.includes(inp) || name.includes(inp)) {
                     cassiopeiaClone.push(obj);
                 }
@@ -480,7 +534,7 @@
                 } = obj;
                 roll = roll.toLowerCase();
                 name = name.toLowerCase();
-                console.log(roll);
+                // console.log(roll);
                 if (roll.includes(inp) || name.includes(inp)) {
                     dracoClone.push(obj);
                 }
@@ -488,7 +542,6 @@
             renderTableToDom(aurigaClone, pegasusClone, cassiopeiaClone, dracoClone);
                 document.getElementById('draco').selected = true;
             }
-
             // renderTableToDom(aurigaClone, pegasusClone, cassiopeiaClone, dracoClone);
         }
     </script>
