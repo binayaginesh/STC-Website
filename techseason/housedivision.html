@@ -166,7 +166,7 @@
 
     <script type="text/javascript">
         $.ajax({
-            url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRM17FJlUXYhCk_8976nlMIizdHR_zDEbJwDDhdUcDdEXjKMEzqIq9tTR86rguStKhYn7pCw26Q2San/pub?gid=0&single=true&output=csv',
+            url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS8dHAjWp9kvXtN564RcOvaBZQwBQ76tUaAB_HI216z-gykevMzwppC5w0DdGYZ63QHhUTl1P_ylA6-/pub?gid=0&single=true&output=csv',
             success: loadDataToState,
             error: function() {
                 $('#leader-div').html('<p>Leaderboard could not be fetched.</p>');
@@ -191,169 +191,40 @@
                 return;
             }
 
-            for (var i = 3; i < rows.length; i++) {
+            for (var i = 1; i < rows.length; i++) {
                 var cells = rows[i].split(',');
                 if (cells.length == 0) {
                     $('#leader-div').html('<p>Data could not be parsed.</p>');
                     return;
                 }
                 if(cells[0].length != 0){
+                // console.log(cells[3])
+                if(cells[3] == 'Auriga'){
                 auriga.push({
                     roll: cells[0],
-                    name: 'B.Tech 4th Year'
+                    name: cells[1],
+                    program: cells[2],
                 })}
-                if(cells[1].length != 0){
-                auriga.push({
-                    roll: cells[1],
-                    name: 'B.Tech 3rd Year'
-                })}
-                if(cells[2].length != 0){
-                auriga.push({
-                    roll: cells[2],
-                    name: 'B.Tech 2nd Year'
-                })}
-                if(cells[3].length != 0){
-                auriga.push({
-                    roll: cells[3],
-                    name: 'B.Tech 1st Year'
-                })}
-                if(cells[4].length != 0){
-                auriga.push({
-                    roll: cells[4],
-                    name: 'M.Tech 1st Year'
-                })}
-                if(cells[5].length != 0){
-                auriga.push({
-                    roll: cells[5],
-                    name: 'MSc 1st Year'
-                })}
-
-
-                if(cells[9].length != 0){
+                else if(cells[3] == 'Pegasus'){
                 pegasus.push({
-                    roll: cells[9],
-                    name: 'B.Tech 4th Year'
+                    roll: cells[0],
+                    name: cells[1],
+                    program: cells[2],
                 })}
-                if(cells[10].length != 0){
-                pegasus.push({
-                    roll: cells[10],
-                    name: 'B.Tech 3rd Year'
-                })}
-                if(cells[11].length != 0){
-                pegasus.push({
-                    roll: cells[11],
-                    name: 'B.Tech 2nd Year'
-                })}
-                if(cells[12].length != 0){
-                pegasus.push({
-                    roll: cells[12],
-                    name: 'B.Tech 1st Year'
-                })}
-                if(cells[13].length != 0){
-                pegasus.push({
-                    roll: cells[13],
-                    name: 'MSc 1st Year'
-                })}
-                if(cells[14].length != 0){
-                pegasus.push({
-                    roll: cells[14],
-                    name: 'MSc 2nd Year'
-                })}
-                if(cells[15].length != 0){
-                pegasus.push({
-                    roll: cells[15],
-                    name: 'M.Tech 1st Year'
-                })}
-                if(cells[16].length != 0){
-                pegasus.push({
-                    roll: cells[16],
-                    name: 'M.Tech 2nd Year'
-                })}
-
-
-                if(cells[18].length != 0){
+                else if(cells[3] == 'Cassiopeia'){
                 cassiopeia.push({
-                    roll: cells[18],
-                    name: 'B.Tech 4th Year'
+                    roll: cells[0],
+                    name: cells[1],
+                    program: cells[2],
                 })}
-                if(cells[19].length != 0){
-                cassiopeia.push({
-                    roll: cells[19],
-                    name: 'B.Tech 3rd Year'
-                })}
-                if(cells[20].length != 0){
-                cassiopeia.push({
-                    roll: cells[20],
-                    name: 'B.Tech 2nd Year'
-                })}
-                if(cells[21].length != 0){
-                cassiopeia.push({
-                    roll: cells[21],
-                    name: 'B.Tech 1st Year'
-                })}
-                if(cells[22].length != 0){
-                cassiopeia.push({
-                    roll: cells[22],
-                    name: 'MSc 1st Year'
-                })}
-                if(cells[23].length != 0){
-                cassiopeia.push({
-                    roll: cells[23],
-                    name: 'MSc 2nd Year'
-                })}
-                if(cells[24].length != 0){
-                cassiopeia.push({
-                    roll: cells[24],
-                    name: 'M.Tech 1st Year'
-                })}
-                if(cells[25].length != 0){
-                cassiopeia.push({
-                    roll: cells[25],
-                    name: 'M.Tech 2nd Year'
-                })}
-
-
-                if(cells[27].length != 0){
+                else if(cells[3] == 'Draco'){
                 draco.push({
-                    roll: cells[27],
-                    name: 'B.Tech 4th Year'
+                    roll: cells[0],
+                    name: cells[1],
+                    program: cells[2],
                 })}
-                if(cells[28].length != 0){
-                draco.push({
-                    roll: cells[28],
-                    name: 'B.Tech 3rd Year'
-                })}
-                if(cells[29].length != 0){
-                draco.push({
-                    roll: cells[29],
-                    name: 'B.Tech 2nd Year'
-                })}
-                if(cells[30].length != 0){
-                draco.push({
-                    roll: cells[30],
-                    name: 'B.Tech 1st Year'
-                })}
-                if(cells[31].length != 0){
-                draco.push({
-                    roll: cells[31],
-                    name: 'MSc 1st Year'
-                })}
-                if(cells[32].length != 0){
-                draco.push({
-                    roll: cells[32],
-                    name: 'MSc 2nd Year'
-                })}
-                if(cells[33].length != 0){
-                draco.push({
-                    roll: cells[33],
-                    name: 'M.Tech 1st Year'
-                })}
-                if(cells[34].length != 0){
-                draco.push({
-                    roll: cells[34],
-                    name: 'M.Tech 2nd Year'
-                })}
-
+            }
+                
                 
 
 
@@ -392,11 +263,12 @@
                         <option ${auriga.length==0 && pegasus.length==0 &&cassiopeia.length!=0 && draco.length==0?'selected':''} value="cassiopeia" id="cassiopeia">Cassiopeia</option>
                         <option ${auriga.length==0 && pegasus.length==0 &&cassiopeia.length==0 && draco.length!=0?'selected':''} value="draco" id="draco">Draco</option>
                         </select>
-                        <thead><tr class="bg-primary"><th scope="col">Roll No.</th><th scope="col">Batch</th><th scope="col">House</th></tr></thead><tbody>`;
+                        <thead><tr class="bg-primary"><th scope="col">Roll No.</th><th scope="col">Name</th><th scope="col">Program</th><th scope="col">House</th></tr></thead><tbody>`;
             for (var i = 0; i < auriga.length; i++) {
                 table += '<tr>';
                 table += '<td>' + auriga[i].roll + '</td>';
                 table += '<td>' + auriga[i].name + '</td>';
+                table += '<td>' + auriga[i].program + '</td>';
                 table += '<th scope="row">Auriga</th>';
                 table += '</tr>';
             }
@@ -406,6 +278,7 @@
                 table += '<tr>';
                 table += '<td>' + pegasus[i].roll + '</td>';
                 table += '<td>' + pegasus[i].name + '</td>';
+                table += '<td>' + pegasus[i].program + '</td>';
                 table += '<th scope="row">Pegasus</th>';
                 table += '</tr>';
             }
@@ -415,6 +288,7 @@
                 table += '<tr>';
                 table += '<td>' + cassiopeia[i].roll + '</td>';
                 table += '<td>' + cassiopeia[i].name + '</td>';
+                table += '<td>' + cassiopeia[i].program + '</td>';
                 table += '<th scope="row">Cassiopeia</th>';
                 table += '</tr>';
             }
@@ -424,6 +298,7 @@
                 table += '<tr>';
                 table += '<td>' + draco[i].roll + '</td>';
                 table += '<td>' + draco[i].name + '</td>';
+                table += '<td>' + draco[i].program + '</td>';
                 table += '<th scope="row">Draco</th>';
                 table += '</tr>';
             }
@@ -463,11 +338,13 @@
             auriga.forEach((obj) => {
                 var {
                     roll,
-                    name
+                    name,
+                    program
                 } = obj;
                 roll = roll.toLowerCase();
                 name = name.toLowerCase();
-                if (roll.includes(inp) || name.includes(inp)) {
+                program = program.toLowerCase();
+                if (roll.includes(inp) || name.includes(inp) || program.includes(inp)) {
                     aurigaClone.push(obj);
                 }
             })
@@ -475,11 +352,13 @@
             pegasus.forEach((obj) => {
                 var {
                     roll,
-                    name
+                    name,
+                    program
                 } = obj;
                 roll = roll.toLowerCase();
                 name = name.toLowerCase();
-                if (roll.includes(inp) || name.includes(inp)) {
+                program = program.toLowerCase();
+                if (roll.includes(inp) || name.includes(inp) || program.includes(inp)) {
                     pegasusClone.push(obj);
                 }
             })
@@ -487,11 +366,13 @@
             cassiopeia.forEach((obj) => {
                 var {
                     roll,
-                    name
+                    name,
+                    program
                 } = obj;
                 roll = roll.toLowerCase();
                 name = name.toLowerCase();
-                if (roll.includes(inp) || name.includes(inp)) {
+                program = program.toLowerCase();
+                if (roll.includes(inp) || name.includes(inp) || program.includes(inp)) {
                     cassiopeiaClone.push(obj);
                 }
             })
@@ -499,11 +380,13 @@
             draco.forEach((obj) => {
                 var {
                     roll,
-                    name
+                    name,
+                    program
                 } = obj;
                 roll = roll.toLowerCase();
                 name = name.toLowerCase();
-                if (roll.includes(inp) || name.includes(inp)) {
+                program = program.toLowerCase();
+                if (roll.includes(inp) || name.includes(inp) || program.includes(inp)) {
                     dracoClone.push(obj);
                 }
             })
