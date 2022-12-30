@@ -69,7 +69,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-10">
                         <h1 class="d-block mb-4" data-aos="fade-up" data-aos-delay="100">House Division</h1>
-                        <span class="d-block mb-5 caption" data-aos="fade-up" data-aos-delay="300">Search your roll number or name</span>
+                        <span class="d-block mb-5 caption" data-aos="fade-up" data-aos-delay="300">Scroll Down</span>
                     </div>
                 </div>
             </div>
@@ -81,7 +81,7 @@
                 <!-- <h3 data-aos="fade-up" data-aos-delay="100">Tech Season Leaderboard</h3> -->
                 <p>Enter your Roll No. or Name to search or select the group to see all its entries</p>
                 <div class="d-flex">
-                    <input type="text" placeholder="Type your Name or Roll number" id="searchbox" style="margin: 20px 0; width: 100%; margin-top: 0px;"/>
+                    <input type="text" placeholder="Type your Name or Roll number" id="searchbox" style="margin: 20px 0; width: 100%; margin-top: 0px; padding-left: 10px;"/>
                     <img src="./images/SearchIcon.png" id="search_roll" class="searchicon" alt="" style="height: 50px; width: auto; margin-top: -6px"/>
                 </div>
                 <div class="mb-4">
@@ -267,7 +267,7 @@
                         <option ${auriga.length == 0 && pegasus.length == 0 && cassiopeia.length != 0 && draco.length == 0 ? 'selected' : ''} value="cassiopeia" id="cassiopeia">Cassiopeia</option>
                         <option ${auriga.length == 0 && pegasus.length == 0 && cassiopeia.length == 0 && draco.length != 0 ? 'selected' : ''} value="draco" id="draco">Draco</option>
                         </select>
-                        <thead><tr class="bg-primary"><th scope="col">Roll No.</th><th scope="col">Name</th><th scope="col">Program</th><th scope="col">House</th></tr></thead><tbody>`;
+                        <thead><tr class="bg-primary" style="color:#f8f9fa;"><th scope="col">Roll No.</th><th scope="col">Name</th><th scope="col">Program</th><th scope="col">House</th></tr></thead><tbody>`;
             for (var i = 0; i < auriga.length; i++) {
                 table += '<tr>';
                 table += '<td class=\"stud-details\">' + auriga[i].roll + '</td>';
